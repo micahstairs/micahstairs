@@ -1,0 +1,57 @@
+body {
+  background: aliceblue;
+}
+
+a {
+  color: blue;
+  text-decoration: none; /* no underline */
+}
+
+.metro-tile {
+
+  cursor: pointer;
+  width: 200px;
+  height: 100px;
+  display: inline-block;
+  color: #000;
+  text-align: center;
+
+  padding: 6px;
+  margin: 4px;
+  margin-top: 8px;
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(.05,#ffdb4d),color-stop(1,#ff9b00));
+  background: -moz-linear-gradient(top,#ffdb4d 5%,#ff9b00 100%);
+  background: -webkit-linear-gradient(top,#ffdb4d 5%,#ff9b00 100%);
+  background: -o-linear-gradient(top,#ffdb4d 5%,#ff9b00 100%);
+  background: -ms-linear-gradient(top,#ffdb4d 5%,#ff9b00 100%);
+  background: linear-gradient(to bottom,#ffdb4d 5%,#ff9b00 100%);
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -webkit-box-shadow: 0 0 3px #000;
+  -moz-box-shadow: 0 0 3px #000;
+  box-shadow: 0 0 3px 0px #000;
+
+}
+
+.metro-tile:hover {
+  box-shadow: 0 0 3px 2px #000;
+}
+
+.metro-tile-title {
+  color: black;
+  font-size: larger;
+  height: 30px;
+}
+.metro-tile-keywords, .metro-tile-date {
+  color: black;
+  font-size: small;
+  height: 40px;
+}
+
+.disable-select {
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}
