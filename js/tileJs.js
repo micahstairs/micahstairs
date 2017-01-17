@@ -1,7 +1,6 @@
 /*
- * Metro-tiles:  Css3 windows metro tiles
- * Author     :  Tim Holman
- * @Author    :  @twholman
+ * Metro-tiles:  CSS3 Windows Metro Tiles
+ * Author:       Tim Holman (Modified by Micah Stairs)
  */
 
 function Tile( element ){
@@ -9,11 +8,8 @@ function Tile( element ){
 	// Tile element	
 	var tile = element;
 
-	// Global settings
-
 	// Declare css for when the tile is in its idle state.
-    var idleCss = "perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( 0px )";
-
+	var idleCss = "perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( 0px )";
 
 	var initialize = function() {
 
@@ -49,8 +45,7 @@ function Tile( element ){
 		
 	}
 
-
-	var pushTile = function( x, y ){
+	var pushTile = function(x, y) {
 
 		// Get the elements width and height.
 		var width = tile.offsetWidth;
@@ -58,53 +53,15 @@ function Tile( element ){
 
 		var translateString = "perspective( 800px ) ";
 		
-
-		/*  Tilt based on position clicked
-		 *  
-		 *  Not quite sure how msft do this, but here's my logic:
-		 *
-		   *  If the click is closer to the left, right, top or bottom:
-		   *    Then tilt in that direction
-		   *
-		   *  Unless the click is in the middle quater of the tile:
-		   *    In which case, push the tile down.
-		   *
-		 */
-
-		// If the click is in the center quater of the element, push down.
-		if ( x > width/4 && x < (width/4 * 3) && y > height/4 && y < (height/4 * 3) ) {
-
-			translateString += "rotateX( 0deg ) rotateY( 0deg ) translateZ( -30px )";
-		}
-		
-		// is the user closer to the right/left hand side?
-		else if ( Math.min( x, width - x) < Math.min( y, height - y) ) {
-
-			// Tilt on the left side
-			if ( x < width - x ) {
-
-				translateString += "rotateX( 0deg ) rotateY( -20deg ) translateZ( 0px )";
-
-			// Tilt on the right side
-			} else {
-
-				translateString += "rotateX( 0deg ) rotateY( 20deg ) translateZ( 0px )";
-			}
-
-		// the user is closer to the top/bottom side (also the default)
-		} else {
-
-			// Tilt on the top
-			if ( y < height - y ) {
-
-				translateString += "rotateX( 20deg ) rotateY( 0deg ) translateZ( 0px )";
-
-			// Tilt on the bottom
-			} else {
-
-				translateString += "rotateX( -20deg ) rotateY( 0deg ) translateZ( 0px )";
-			}
-		}
+		//  Tilt based on position clicked
+		var percentageVertical = y / height;
+		var percentageHorizontal = x / width;
+		var v = (percentageVertical - 0.5) * 2.0;
+		var h = (percentageHorizontal - 0.5) * 2.0;
+		var rotateY = h * 5.0;
+		var rotateX = v * -5.0;
+		var translateZ = - (1.0 - (Math.abs(v) * Math.abs(h))) * 10;
+		translateString += "rotateX( " + rotateX + "deg ) rotateY( " + rotateY + "deg ) translateZ( " + translateZ + "px )";
 
 		// Apply transformation to tile.
 		tile.style.webkitTransform = translateString;
@@ -113,29 +70,23 @@ function Tile( element ){
 		tile.style.oTransform = translateString;
 		tile.style.transform = translateString;
 
-		document.addEventListener('mouseup',   MouseUp,   false);    
+		document.addEventListener('mouseup', MouseUp, false);    
 
 	};
 	
-	var MouseDown = function( event ){
-
-		// Chrome
-		if ( event.offsetX ) {
-			pushTile( event.offsetX, event.offsetY );
-			return;
-		}
+	var MouseDown = function(event) {
 
 		// Non offsetX browsers
-		var tilePosition = elementPosition( tile );
+		var tilePosition = elementPosition(tile);
 		var x = event.pageX - tilePosition.x;
 		var y = event.pageY - tilePosition.y;
 		
-		pushTile( x, y );
+		pushTile(x, y);
 		
 	};
 	
 
-	var MouseUp = function( event ){
+	var MouseUp = function(event) {
 
 		// Set the element to its idle state
 		tile.style.webkitTransform = idleCss;
@@ -144,16 +95,16 @@ function Tile( element ){
 		tile.style.oTransform = idleCss;
 		tile.style.transform = idleCss;
 
-		document.removeEventListener('mouseup',   MouseUp,   false);
+		document.removeEventListener('mouseup', MouseUp, false);
 	};
 
 	// Element position finding for non webkit browsers.
 	// How will this perform on mobile?
-	var getNumericStyleProperty = function(style, prop){
-    	return parseInt(style.getPropertyValue(prop),10) ;
+	var getNumericStyleProperty = function(style, prop) {
+    return parseInt(style.getPropertyValue(prop),10) ;
 	}
 
-	var elementPosition = function( e ){
+	var elementPosition = function(e) {
 		var x = 0, y = 0;
 	    var inner = true ;
 	    do {
@@ -180,12 +131,12 @@ function Tile( element ){
 }
 
 // Find all tile elements
-var tileElements = document.getElementsByClassName( 'metro-tile' );
+var tileElements = document.getElementsByClassName('metro-tile');
 var i;
 
 // Apply tile functions 
-for ( i = 0; i < tileElements.length; i++ ) {
+for (i = 0; i < tileElements.length; i++) {
 
-	Tile( tileElements[i] );
+	Tile(tileElements[i]);
 
 }

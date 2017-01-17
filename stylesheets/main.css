@@ -3,7 +3,6 @@ body {
 }
 
 a {
-  color: blue;
   text-decoration: none; /* no underline */
 }
 
@@ -11,7 +10,7 @@ a {
 
   cursor: pointer;
   width: 200px;
-  height: 100px;
+  height: 120px;
   display: inline-block;
   color: #000;
   text-align: center;
