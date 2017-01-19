@@ -1,9 +1,41 @@
+.cd-date {
+  color: #292b2c;
+}
+
+.cd-timeline-img.cd-blue {
+  background: #4285f4;
+}
+.cd-timeline-img.cd-green {
+  background: #75ce66;
+}
+.cd-timeline-img.cd-red {
+  background: #c03b44;
+}
+.cd-timeline-img.cd-yellow {
+  background: #f0ca45;
+}
+
+
 body {
   background: aliceblue;
 }
 
 a {
   text-decoration: none; /* no underline */
+}
+
+
+
+.navigation-bar {
+  text-align: center;
+}
+
+.navigation {
+  text-align: center;
+  width: 100%;
+  color: white;
+  display: inline;
+  margin: 20px;
 }
 
 .metro-tile {
