@@ -32,9 +32,8 @@
  * it turns out we only ever have up to 2 non-zero values, which means we could just
  * use O(1) space to represent these values. This, of course, would make the
  * implementation a bit more conflicted. Taking this a step further, however, I
- * believe it would even be possible to achieve O(n) time if we used some
- * BigInteger.modPow() operations, as opposed to O(n^2) time. The cost of these
- * operations might outweigh the saved time though.
+ * believe it would even be possible to achieve O(n) time if we did some multiplicaton,
+ * as opposed to O(n^2) time.
  **/
 
 import java.util.*;
