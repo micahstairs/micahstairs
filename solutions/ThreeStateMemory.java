@@ -3,7 +3,7 @@
  * Author: Micah Stairs
  * Solved On: January 18, 2017
  *
- * I initially discussing this problem with William Fiset and Finn Lidbetter,
+ * I initially discussed this problem with William Fiset and Finn Lidbetter,
  * however we did not come to a complete solution at the time, although we
  * had a vague idea of how the DP solution would be structured.
  *
