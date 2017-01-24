@@ -3,6 +3,9 @@
  * Author: Micah Stairs
  * Solved On: January 23, 2017
  *
+ * I initially worked on this problem with Finn Lidbetter, but our initial approach
+ * was not quite right. Many important ideas came out of that discussion, however.
+ *
  * This is actually quite a nice problem. First, we note that each palindromes is
  * just placing a set of equality requirements on pairs of indices. We can use
  * Union Find to find the groups of indices which must then be all equal. Within
