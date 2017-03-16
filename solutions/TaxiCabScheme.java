@@ -3,7 +3,14 @@
  * Author: Micah Stairs
  * Solved On: March 15, 2017
  * 
- * I worked on this problem with Finn Lidbetter.
+ * I worked on this problem with Finn Lidbetter. The general approach is to look
+ * at each pair of cab rides and determine if one cab can be re-used for the other
+ * ride. This is done by looking at the starting time of the first cab ride, adding
+ * the time taken to do that ride, and then adding the time taken to get to the
+ * starting location of the second cab ride. If the starting time of the second ride
+ * is later than this computed time, then the cab can be re-used. We use maximum
+ * flow to compute the number of cabs which can be re-used, using the generated
+ * bipartite graph with capacities of 1.
  **/
 
 import java.util.*;
@@ -40,16 +47,19 @@ public class TaxiCabScheme {
         endTimes[i] = startTimes[i] + dist(startX[i], startY[i], endX[i], endY[i]);
       }
 
+      // Setup graph
       int nNodes = n + n + 2;
       int source = nNodes - 2;
       int sink = nNodes - 1;
       List<Edge>[] graph = createGraph(nNodes);
 
+      // Connect to source and sink
       for (int i = 0; i < n; i++) {
         addEdge(graph, source, i, 1);
         addEdge(graph, n + i, sink, 1);
       }
 
+      // Check to see which
       boolean[][] canReuse = new boolean[n][n];
       for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
@@ -57,20 +67,25 @@ public class TaxiCabScheme {
           if (timeReady < startTimes[j]) addEdge(graph, i, n + j, 1);
         }
       }
+
+      // Add answer
       int nCabsSaved = maxFlow(graph, source, sink);
       int nCabsNeeded = n - nCabsSaved;
       sb.append(nCabsNeeded + "\n");
 
     }
 
+    // Output answers
     System.out.print(sb);
   
   }
 
+  // Compute the Manhatten distance between two points
   static int dist(int x1, int y1, int x2, int y2) {
     return Math.abs(x1 - x2) + Math.abs(y1 - y2);
   }
 
+  // Parse time and represent it as the total number of minutes
   static int parseTime(String str) {
     int hours = Integer.parseInt(str.substring(0, 2));
     int minutes = Integer.parseInt(str.substring(3, 5));
