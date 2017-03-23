@@ -3,11 +3,12 @@
  * Author: Micah Stairs
  * Solved On: March 22, 2017
  * 
- * I spent a bit of time discussing this problem with William Fiset and Finn Lidbetter. We initially
- * thought we could get away with a O(n^2) line sweeping algorithm, avoiding the need of using a 
- * segment tree, but this approach was too slow.
+ * I spent a bit of time discussing this problem with William Fiset and Finn Lidbetter.
+ * I implemented an algorithm which I initially believed to be O(n^2) but it may have been
+ * O(n^2logn). This involved a line sweeping algorithm, but avoided the need of using a 
+ * segment tree. This approach was too slow.
  *
- * So we had to improve it to O(nlogn) by using the segment tree. Since we are
+ * So I had to improve it to O(nlogn) by using the segment tree. Since we are
  * working with real values, it was necessary to use coordinate compression.
  * Lazy propagation is, of course, required in this situation since we are doing
  * both range updates and queries. This particular segment tree keeps track of the
